@@ -2,6 +2,7 @@ import {Component, EventEmitter, OnInit} from '@angular/core';
 import {Ingredient} from "../shared/ingredient.model";
 import {LoggingService} from "../shared/logging.service";
 import {ShoppingListService} from "../services/shopping-list.service";
+import {Subject} from "rxjs";
 
 @Component({
   selector: 'app-shopping-list',
@@ -12,6 +13,7 @@ import {ShoppingListService} from "../services/shopping-list.service";
 export class ShoppingListComponent implements OnInit {
   ingredients : Ingredient[] = []
   ingredientAdded = new EventEmitter<Ingredient>();
+
   //   new Ingredient("Sugar", 1.5),
   //   new Ingredient("Tomato", 3)
   // ];
@@ -22,5 +24,10 @@ export class ShoppingListComponent implements OnInit {
     this.shoppingList.ingredientsChanged.subscribe((ingredient: Ingredient[]) => {
       this.ingredients = ingredient;
     });
+  }
+
+  onEditItem(item: number) {
+    debugger;
+    this.shoppingList.startedEditing.next(item);
   }
 }
