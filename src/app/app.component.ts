@@ -1,4 +1,6 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {AuthService} from "./auth/authservice";
+import {LoggingService} from "./shared/logging.service";
 
 @Component({
   selector: 'app-root',
@@ -6,12 +8,15 @@ import {Component} from '@angular/core';
   styleUrls: ['./app.component.css'],
   providers: []
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'cookbook';
   selection: string = 'recipe';
 
-  onNavigate($event: any) {
-    console.log($event);
-    this.selection = $event;
+  constructor(private authService: AuthService, private loggingService: LoggingService) {
+  }
+
+  ngOnInit(): void {
+    this.authService.autoLogin();
+    this.loggingService.printLog('Hello from AppComponent');
   }
 }

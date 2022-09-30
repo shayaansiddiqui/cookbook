@@ -2,7 +2,7 @@ import {Component, EventEmitter, OnInit} from '@angular/core';
 import {Ingredient} from "../shared/ingredient.model";
 import {LoggingService} from "../shared/logging.service";
 import {ShoppingListService} from "../services/shopping-list.service";
-import {Subject} from "rxjs";
+
 
 @Component({
   selector: 'app-shopping-list',
@@ -24,6 +24,7 @@ export class ShoppingListComponent implements OnInit {
     this.shoppingList.ingredientsChanged.subscribe((ingredient: Ingredient[]) => {
       this.ingredients = ingredient;
     });
+    this.loggingService.printLog('Hello from ShoppingList')
   }
 
   onEditItem(item: number) {

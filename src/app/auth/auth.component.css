@@ -1,0 +1,4 @@
+.disabled-button:disabled {
+  background: lightgray;
+  color: crimson;
+}
